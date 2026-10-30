@@ -1,0 +1,26 @@
+name = "lms-ppm"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "lms-db"
+database_id = "688a48e3-79e2-433f-93d2-3e4150bed1f1"
+
+# Frontend (public/) disajikan dari Worker yang sama, sehingga fetch('/api')
+# dan fetch('/public') satu origin. Hanya /api & /public yang masuk ke Worker.
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api", "/api/*", "/public"]
+
+[vars]
+RESEND_FROM = "LMS IPWIJA <no-reply@piawai.id>"
+# APP_ORIGIN dipakai membangun tautan reset password di email (origin production).
+APP_ORIGIN = "https://lms.piawai.id"
+# Opsional, hanya jika frontend dihosting di origin lain (dipisah koma):
+# ALLOWED_ORIGINS = "https://lms.piawai.id,http://localhost:8787"
+
+# Secret WAJIB lewat CLI, jangan ditulis di sini:
+#   wrangler secret put SESSION_SECRET
+#   wrangler secret put RESEND_API_KEY   (opsional)

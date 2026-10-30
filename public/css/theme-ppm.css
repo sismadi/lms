@@ -1,0 +1,78 @@
+/* ============================================================
+   theme-ppm.css — Tema & shell SIM-PPM (LPPM IPWIJA) untuk LMS.
+   Dimuat SETELAH style.css: menimpa variabel warna + layout.
+   Palet & komponen disalin dari ppm/public/index.html.
+   ============================================================ */
+:root{
+  --hh:64px;
+  --b9:#1c3f66;--b8:#2a5a8c;--b7:#3b74ab;--b6:#5c93c9;--b5:#8db8de;--b3:#bdd8f0;--b1:#e4f0fb;--b0:#f3f8fd;
+  --ink:#1e2a34;--soft:#4a5a68;--line:#c7dbee;--ok:#1e7e34;--bad:#a4342a;
+
+  /* variabel LMS dipetakan ke palet PPM */
+  --pColor:var(--b7);--sColor:var(--b7);--aColor:#1a56a0;--tColor:var(--ink);
+  --pLightColor:var(--b6);--pDarkColor:var(--b9);--pTextColor:#fff;
+  --bg-dark:var(--b0);--bg-light:var(--b0);--color-page-bg:var(--b0);
+  --color-danger:var(--bad);--color-success:var(--ok);--color-muted:var(--soft);
+  --font-serif:"Segoe UI",Tahoma,Arial,sans-serif;--font-heading:"Segoe UI",Tahoma,Arial,sans-serif;--font-body:"Segoe UI",Tahoma,Arial,sans-serif;
+  --radius-sm:3px;--radius-lg:6px;
+}
+html{scroll-padding-top:calc(var(--hh) + 8px)}
+body{font-size:14px;line-height:1.45;background:var(--b0);background-image:none;color:var(--ink)}
+a{color:#1a56a0}
+
+/* ---------- Shell: topbar + sidebar + main ---------- */
+.app{display:grid;grid-template-columns:220px minmax(0,1fr);grid-template-areas:"top top" "side main";grid-template-rows:var(--hh) 1fr;min-height:100vh}
+.top{grid-area:top;position:sticky;top:0;z-index:50;background:linear-gradient(var(--b5),var(--b7));display:flex;align-items:center;gap:12px;height:var(--hh);padding:0 20px;overflow:hidden;border-bottom:1px solid var(--b9);color:#fff}
+.brand{display:flex;align-items:center;gap:10px;font-size:22px;line-height:1.2;font-weight:700;color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.25);min-width:0;flex:1 1 auto}
+.brand .logo{height:40px;width:auto;background:#fff;border-radius:4px;padding:2px;flex:0 0 auto}
+.brand small{display:block;font-size:12px;line-height:1.3;font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sess{color:var(--b9);font-size:13px;white-space:nowrap;flex:0 0 auto;display:flex;align-items:center;gap:8px;margin:0}
+.sess a,.sess .auth-chip{color:var(--b9);font-weight:600}
+.sess .auth-chip{background:rgba(255,255,255,.55);padding:4px 10px}
+.sess .auth-name{font-size:13px;font-weight:700}
+.sess .badge,.badge{background:var(--b8);color:#fff;border-radius:12px;padding:2px 9px;font-size:12px}
+.sess .auth-logout{margin:0;padding:5px 12px}
+.burger{display:none;background:none;border:0;color:#fff;font-size:24px;padding:0 6px;cursor:pointer;line-height:1}
+
+.side{grid-area:side;padding:14px;align-self:start;position:sticky;top:calc(var(--hh) + 14px);margin:14px 0 14px 14px;padding:0;display:block}
+.nav-links{display:block}
+.side a,.nav-links a{display:block;padding:10px 14px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--b1);white-space:normal;transition:none}
+.side a:hover,.side a.on,.nav-links a:hover{background:var(--b1);font-weight:600;background-image:none}
+.side a:last-child{border-bottom:0}
+
+.main{grid-area:main;width:auto;margin:0;padding:14px 18px 40px;min-width:0}
+.panel{background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 1px 3px rgba(20,50,80,.15)}
+.main>.panel{overflow:hidden}
+#content{padding:0;min-height:50vh}
+.foot{margin-top:14px;text-align:center;color:var(--soft);font-size:12px}
+
+/* ---------- Komponen: tombol, form, tabel, badge ---------- */
+.btn,.slcBtn,button.slcBtn,a.slcBtn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(#fff,var(--b1));border:1px solid var(--line);border-radius:3px;padding:7px 13px;cursor:pointer;color:var(--ink);text-shadow:none;box-shadow:none;font:inherit;text-decoration:none}
+.btn:hover,.slcBtn:hover{background:var(--b1);text-decoration:none}
+.btn.p,.slcBtn.primary,.slcBtn.p{background:linear-gradient(var(--b6),var(--b8));color:#fff;border-color:var(--b9)}
+:focus-visible{outline:2px solid var(--b8);outline-offset:1px}
+input:not([type=checkbox]):not([type=radio]),select,textarea{border:1px solid var(--line);border-radius:3px;padding:8px 10px;font:inherit;color:var(--ink);background:#fff}
+table{width:100%;border-collapse:collapse;background:#fff}
+th{background:linear-gradient(var(--b1),var(--b3));text-align:left;padding:9px 11px;color:var(--b9);white-space:nowrap}
+td{padding:9px 11px;border-bottom:1px solid var(--b1);vertical-align:top}
+tbody tr:hover{background:var(--b0)}
+h1,h2,h3{color:var(--b9)}
+h1{font-size:26px}h2{font-size:21px}h3{font-size:17px}
+
+/* ---------- Drawer & modal (pola PPM: panel putih, header biru muda) ---------- */
+.form-drawer,.modul-drawer{background:#fff;box-shadow:-6px 0 18px rgba(20,50,80,.28)}
+.form-drawer-header,.modul-drawer-header{background:linear-gradient(var(--b3),var(--b5));color:var(--b9);font-weight:700}
+.form-drawer-close,.modul-drawer-close{background:linear-gradient(#fff,var(--b1));color:var(--ink);border:1px solid var(--line);border-radius:3px}
+.form-drawer-overlay,.modul-drawer-overlay{background:rgba(10,20,30,.45)}
+
+/* ---------- Responsif ---------- */
+@media(max-width:768px){
+  .app{grid-template-columns:1fr;grid-template-areas:"top" "main";grid-template-rows:var(--hh) 1fr}
+  .top{padding:0 12px}
+  .burger{display:block}
+  .brand{font-size:18px}.brand small{display:none}
+  .sess .auth-name,.sess .auth-role{display:none}
+  .side{position:fixed;z-index:60;top:var(--hh);left:0;bottom:0;width:230px;margin:0;border-radius:0;overflow-y:auto;transform:translateX(-102%);transition:transform .25s}
+  .side.active{transform:none}
+  .main{padding:10px}
+}
